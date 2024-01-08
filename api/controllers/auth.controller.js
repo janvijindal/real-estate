@@ -35,7 +35,7 @@ export const signin = async(req,res,next)=>{
 
      try {
       //validate the email of user
-       const validUser = await User.findOne({ email });
+       const validUser = await User.findOne({ email }).maxTimeMS(20000);
         //not valid then return error
        if (!validUser) return next(errorHandler(404, 'User not found!'));
         
